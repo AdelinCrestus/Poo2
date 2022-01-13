@@ -1,6 +1,5 @@
 package children;
 
-import elves.Elf;
 import enums.Category;
 import enums.Cities;
 import enums.ElvesType;

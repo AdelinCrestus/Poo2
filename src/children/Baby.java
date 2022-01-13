@@ -17,7 +17,7 @@ public final class Baby extends ChildStrategy {
                 final Cities city, final Double niceScore,
                 final ArrayList<Category> giftsPreferences, final Integer niceScoreBonus,
                 final ElvesType elf) {
-        super(id, lastName, firstName, age, city, niceScore, giftsPreferences,niceScoreBonus, elf);
+        super(id, lastName, firstName, age, city, niceScore, giftsPreferences, niceScoreBonus, elf);
     }
 
     @Override

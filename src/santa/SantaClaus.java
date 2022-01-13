@@ -1,8 +1,8 @@
 package santa;
 
-import SortChildren.Sort;
-import SortChildren.SortById;
-import SortChildren.SortFactory;
+import sorters.Sort;
+import sorters.SortById;
+import sorters.SortFactory;
 import children.ChildStrategy;
 import children.Child;
 import children.ChildFactory;
@@ -53,7 +53,7 @@ public final class SantaClaus {
         return strategy;
     }
 
-    public void setStrategy(String strategy) {
+    public void setStrategy(final String strategy) {
         this.strategy = strategy;
     }
 
@@ -136,7 +136,8 @@ public final class SantaClaus {
         calculateBudgetUnit();
         for (ChildStrategy child : childStrategyArrayList) {
             child.setAssignedBudget(child.average() * getBudgetUnit());
-            if(child.getElf().compareTo(ElvesType.BLACK) == 0 || child.getElf().compareTo(ElvesType.PINK) == 0) {
+            if (child.getElf().compareTo(ElvesType.BLACK) == 0
+                    || child.getElf().compareTo(ElvesType.PINK) == 0) {
                 child.getElfStrategy().elfAction();
             }
         }
@@ -187,7 +188,8 @@ public final class SantaClaus {
                 children.remove(child);
                 Teen teen = new Teen(child.getId(), child.getLastName(),
                         child.getFirstName(), child.getAge(), child.getCity(),
-                        child.getNiceScore(), child.getGiftsPreferences(), child.getNiceScoreBonus(),child.getElf());
+                        child.getNiceScore(), child.getGiftsPreferences(),
+                        child.getNiceScoreBonus(), child.getElf());
                 teen.setNiceScoreHistory(child.getNiceScoreHistory());
                 teen.setReceivedGifts(child.getReceivedGifts());
                 teen.setAssignedBudget(child.getAssignedBudget());
@@ -196,7 +198,8 @@ public final class SantaClaus {
                 children.remove(child);
                 Kid kid = new Kid(child.getId(), child.getLastName(),
                         child.getFirstName(), child.getAge(), child.getCity(),
-                        child.getNiceScore(), child.getGiftsPreferences(), child.getNiceScoreBonus(),child.getElf());
+                        child.getNiceScore(), child.getGiftsPreferences(),
+                        child.getNiceScoreBonus(), child.getElf());
                 kid.setNiceScoreHistory(child.getNiceScoreHistory());
                 kid.setAssignedBudget(child.getAssignedBudget());
                 kid.setReceivedGifts(child.getReceivedGifts());
@@ -238,7 +241,7 @@ public final class SantaClaus {
                         child.setNiceScore(childUpdate.getNiceScore());
                     }
 
-                    if(childUpdate.getElf() != null) {
+                    if (childUpdate.getElf() != null) {
                         child.setElf(childUpdate.getElf());
                         child.assignElf(child);
                     }
@@ -264,15 +267,14 @@ public final class SantaClaus {
             sorter.sortChildren(childrenList);
             for (ChildStrategy child : childrenList) {
                 Double totalPrice = 0.0;
-                //ArrayList<Gift> gifts = new CopyGifts().copyGiftList(giftList);
                 for (Category category : child.getGiftsPreferences()) {
                     if (totalPrice >= child.getAssignedBudget()) {
                         break;
                     }
                     for (Gift gift : giftList) {
                         if (category.equals(gift.getCategory())
-                                && (totalPrice + gift.getPrice() <= child.getAssignedBudget()) &&
-                                gift.getQuantity() > 0) {
+                                && (totalPrice + gift.getPrice() <= child.getAssignedBudget())
+                                && gift.getQuantity() > 0) {
                             totalPrice += gift.getPrice();
                             giveGift(child, gift, giftList);
                             break;

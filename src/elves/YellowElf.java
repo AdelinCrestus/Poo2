@@ -7,7 +7,7 @@ import santa.SantaClaus;
 
 import java.util.ArrayList;
 
-public class YellowElf extends Elf {
+public final class YellowElf extends Elf {
     private ArrayList<ChildStrategy> children;
     public YellowElf() {
         super();
@@ -17,7 +17,7 @@ public class YellowElf extends Elf {
         return children;
     }
 
-    public void setChildren(ArrayList<ChildStrategy> children) {
+    public void setChildren(final ArrayList<ChildStrategy> children) {
         this.children = children;
     }
 
@@ -26,12 +26,13 @@ public class YellowElf extends Elf {
         SantaClaus santaClaus = SantaClaus.getInstance();
         ArrayList<Gift> gifts = santaClaus.getGiftList();
         for (ChildStrategy child : children) {
-            if(child.getElf().compareTo(ElvesType.YELLOW) == 0) {
+            if (child.getElf().compareTo(ElvesType.YELLOW) == 0) {
                 if (child.getReceivedGifts().isEmpty()) {
                     for (Gift gift : gifts) {
                         if (!child.getGiftsPreferences().isEmpty()) {
-                            if (gift.getCategory().compareTo(child.getGiftsPreferences().get(0)) == 0) {
-                                if(gift.getQuantity() > 0) {
+                            if (gift.getCategory().compareTo(child.getGiftsPreferences().get(0))
+                                    == 0) {
+                                if (gift.getQuantity() > 0) {
                                     santaClaus.giveGift(child, gift, gifts);
                                 }
                                 break;

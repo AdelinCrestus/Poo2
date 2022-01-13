@@ -1,6 +1,5 @@
 package elves;
 
-import children.Child;
 import children.ChildStrategy;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import enums.ElvesType;
@@ -13,27 +12,35 @@ public abstract class Elf {
     public Elf() {
     }
 
-
-    public Elf(ElvesType elvesTypeType, ChildStrategy child) {
-        this.elfType = elvesTypeType;
+    /**
+     * Clasa abstracta creata pentru a implementa design pattern-ul strategy pentru calculul
+     * bugetului influentat de elfi
+     * @param elvesType tipul elfului
+     * @param child copilul caruia ii este asignat
+     */
+    public Elf(final ElvesType elvesType, final ChildStrategy child) {
+        this.elfType = elvesType;
         this.child = child;
     }
 
+    /**
+     * Fiecare elf isi va face actiunea detaliata in enunt
+     */
     public abstract void elfAction();
 
-    public ElvesType getElfType() {
+    public final ElvesType getElfType() {
         return elfType;
     }
 
-    public void setElfType(ElvesType elfType) {
+    public final void setElfType(final ElvesType elfType) {
         this.elfType = elfType;
     }
     @JsonIgnore
-    public ChildStrategy getChild() {
+    public final ChildStrategy getChild() {
         return child;
     }
     @JsonIgnore
-    public void setChild(ChildStrategy child) {
+    public final void setChild(final ChildStrategy child) {
         this.child = child;
     }
 }

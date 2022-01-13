@@ -11,6 +11,8 @@ public final class Constants {
     public static final Integer CHECKSTYLE_POINTS = 10;
     public static final Integer TESTS_NUMBER_SMALL = 15;
     public static final Double TEN = 10.0;
+    public static final Integer THIRTY = 30;
+    public static final Integer ONE_HUNDRED = 100;
     public static final Integer MINIMUM_AGE_KID = 5;
     public static final Integer MAXIMUM_AGE_KID = 12;
     public static final Integer MAXIMUM_AGE_TEEN = 18;

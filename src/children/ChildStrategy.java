@@ -2,7 +2,12 @@ package children;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import elves.*;
+import common.Constants;
+import elves.PinkElf;
+import elves.YellowElf;
+import elves.Elf;
+import elves.BlackElf;
+import elves.WhiteElf;
 import enums.Category;
 import enums.Cities;
 import enums.ElvesType;
@@ -21,20 +26,33 @@ public abstract class ChildStrategy extends Child {
     public ChildStrategy() {
     }
     @JsonIgnore
-    public Elf getElfStrategy() {
+    public final Elf getElfStrategy() {
         return elfStrategy;
     }
     @JsonProperty
-    public void setElfStrategy(Elf elf) {
+    public final void setElfStrategy(final Elf elf) {
         this.elfStrategy = elf;
     }
 
-    public void assignElf(final ChildStrategy childStrategy) {
+    /**
+     * Asigneaza elful de tipul particular copilului primit ca parametru
+     * @param childStrategy
+     */
+
+    public final void assignElf(final ChildStrategy childStrategy) {
         switch (getElf()) {
-            case PINK -> elfStrategy = new PinkElf(ElvesType.PINK, childStrategy);
-            case BLACK -> elfStrategy = new BlackElf(ElvesType.BLACK, childStrategy);
-            case WHITE -> elfStrategy = new WhiteElf(ElvesType.WHITE, childStrategy);
-            case YELLOW -> elfStrategy = new YellowElf();
+            case PINK -> {
+                elfStrategy = new PinkElf(ElvesType.PINK, childStrategy);
+            }
+            case BLACK -> {
+                elfStrategy = new BlackElf(ElvesType.BLACK, childStrategy);
+            }
+            case YELLOW -> {
+                elfStrategy = new YellowElf();
+            }
+            default -> {
+                elfStrategy = new WhiteElf(ElvesType.WHITE, childStrategy);
+            }
         }
     }
 
@@ -50,8 +68,8 @@ public abstract class ChildStrategy extends Child {
                          final Integer age, final Cities city, final Double niceScore,
                          final ArrayList<Category> giftsPreferences, final Integer niceScoreBonus,
                          final ElvesType elf) {
-        //super(id, lastName, firstName, age, city, niceScore, giftsPreferences);
-        Builder builder = new Builder(id, lastName, firstName, city, age, giftsPreferences, niceScore, elf);
+        Builder builder = new Builder(id, lastName, firstName, city, age, giftsPreferences,
+                niceScore, elf);
         builder = builder.niceScoreBonus(niceScoreBonus);
         Child child = builder.build();
         this.setId(child.getId());
@@ -97,11 +115,13 @@ public abstract class ChildStrategy extends Child {
         this.assignedBudget = assignedBudget;
     }
 
-    public void addNiceScoreBonus() {
-        averageScore += averageScore * getNiceScoreBonus() / 100;
-        if(averageScore > 10)
-        {
-            averageScore = 10.0;
+    /**
+     * Adauga NiceScoreBonus la averageScore
+     */
+    public final void addNiceScoreBonus() {
+        averageScore += averageScore * getNiceScoreBonus() / Constants.ONE_HUNDRED;
+        if (averageScore > Constants.TEN) {
+            averageScore = Constants.TEN;
         }
         setAverageScore(averageScore);
     }

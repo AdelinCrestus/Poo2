@@ -1,10 +1,15 @@
-package SortChildren;
+package sorters;
 
-public class SortFactory {
+public final class SortFactory {
     public SortFactory() {
     }
 
-    public Sort createSorter(String criterion) {
+    /**
+     * Am folosit factory pentru a crea la runtime tipul de sortare de care avem nevoie
+     * @param criterion
+     * @return
+     */
+    public Sort createSorter(final String criterion) {
         switch (criterion) {
             case "id" -> {
                 return new SortById();
@@ -15,7 +20,9 @@ public class SortFactory {
             case "niceScoreCity" -> {
                 return new SortByNiceScoreCity();
             }
+            default -> {
+                return null;
+            }
         }
-        return null;
     }
 }

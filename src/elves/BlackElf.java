@@ -1,11 +1,11 @@
 package elves;
 
-import children.Child;
 import children.ChildStrategy;
+import common.Constants;
 import enums.ElvesType;
 
-public class BlackElf extends Elf{
-    public BlackElf(ElvesType elvesTypeType, ChildStrategy child) {
+public final class BlackElf extends Elf {
+    public BlackElf(final ElvesType elvesTypeType, final ChildStrategy child) {
         super(elvesTypeType, child);
     }
 
@@ -13,7 +13,7 @@ public class BlackElf extends Elf{
     public void elfAction() {
         ChildStrategy child = getChild();
         Double budget = child.getAssignedBudget();
-        budget -= budget * 30 / 100;
+        budget -= budget * Constants.THIRTY / Constants.ONE_HUNDRED;
         child.setAssignedBudget(budget);
     }
 }

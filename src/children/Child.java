@@ -19,7 +19,7 @@ public class Child {
     private Integer niceScoreBonus;
     private ElvesType elf;
 
-    public static class Builder {
+    public static final class Builder {
         private Integer id; // mandatory
         private String lastName; // mandatory
         private String firstName; // mandatory
@@ -32,8 +32,10 @@ public class Child {
         @JsonIgnore
         private ElvesType elf;
 
-        public Builder(Integer id, String lastName, String firstName, Cities city, Integer age,
-                       ArrayList<Category> giftsPreferences, Double niceScore, ElvesType elf) {
+        public Builder(final Integer id, final String lastName, final String firstName,
+                       final Cities city, final Integer age,
+                       final ArrayList<Category> giftsPreferences, final Double niceScore,
+                       final ElvesType elf) {
             this.id = id;
             this.lastName = lastName;
             this.firstName = firstName;
@@ -44,11 +46,20 @@ public class Child {
             this.elf = elf;
         }
 
-        public Builder niceScoreBonus(int niceScoreBonus) {
-            this.niceScoreBonus = niceScoreBonus;
+        /**
+         * Seteaza niceScoreBonus in builder si il returneaza
+         * @param niceScoreBonus1
+         * @return
+         */
+        public Builder niceScoreBonus(final int niceScoreBonus1) {
+            this.niceScoreBonus = niceScoreBonus1;
             return this;
         }
 
+        /**
+         * Metoda care creaza un nou copil cu elementele din builder
+         * @return
+         */
         public Child build() {
             return new Child(this);
         }
@@ -58,7 +69,7 @@ public class Child {
     public Child() {
     }
 
-    private Child(Builder builder) {
+    private Child(final Builder builder) {
         this.id = builder.id;
         this.lastName = builder.lastName;
         this.firstName = builder.firstName;
@@ -81,11 +92,11 @@ public class Child {
         this.giftsPreferences = giftsPreferences;
     }
     @JsonIgnore
-    public Integer getNiceScoreBonus() {
+    public final Integer getNiceScoreBonus() {
         return niceScoreBonus;
     }
     @JsonProperty
-    public void setNiceScoreBonus(Integer niceScoreBonus) {
+    public final void setNiceScoreBonus(final Integer niceScoreBonus) {
         this.niceScoreBonus = niceScoreBonus;
     }
 
@@ -129,11 +140,11 @@ public class Child {
         this.city = city;
     }
     @JsonIgnore
-    public ElvesType getElf() {
+    public final ElvesType getElf() {
         return elf;
     }
     @JsonProperty
-    public void setElf(ElvesType elf) {
+    public final void setElf(final ElvesType elf) {
         this.elf = elf;
     }
 

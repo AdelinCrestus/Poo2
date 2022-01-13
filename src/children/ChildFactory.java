@@ -29,7 +29,7 @@ public final class ChildFactory {
             childStrategy = new Teen(child.getId(),
                     child.getLastName(), child.getFirstName(), child.getAge(),
                     child.getCity(), child.getNiceScore(), child.getGiftsPreferences(),
-                    child.getNiceScoreBonus(),child.getElf());
+                    child.getNiceScoreBonus(), child.getElf());
         } else {
             childStrategy = new YoungAdult(child.getId(),
                     child.getLastName(), child.getFirstName(), child.getAge(),
