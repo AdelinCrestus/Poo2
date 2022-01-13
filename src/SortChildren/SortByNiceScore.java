@@ -11,10 +11,10 @@ public class SortByNiceScore implements Sort{
         children.sort(new Comparator<ChildStrategy>() {
             @Override
             public int compare(ChildStrategy o1, ChildStrategy o2) {
-                if(o1.getNiceScore().compareTo(o2.getNiceScore()) == 0){
+                if(o1.getAverageScore().compareTo(o2.getAverageScore()) == 0){
                     return o1.getId().compareTo(o2.getId());
                 }
-                return o2.getNiceScore().compareTo(o1.getNiceScore());
+                return o2.getAverageScore().compareTo(o1.getAverageScore());
             }
         });
     }

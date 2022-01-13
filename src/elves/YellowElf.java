@@ -31,7 +31,9 @@ public class YellowElf extends Elf {
                     for (Gift gift : gifts) {
                         if (!child.getGiftsPreferences().isEmpty()) {
                             if (gift.getCategory().compareTo(child.getGiftsPreferences().get(0)) == 0) {
-                                santaClaus.giveGift(child, gift, gifts);
+                                if(gift.getQuantity() > 0) {
+                                    santaClaus.giveGift(child, gift, gifts);
+                                }
                                 break;
                             }
                         }

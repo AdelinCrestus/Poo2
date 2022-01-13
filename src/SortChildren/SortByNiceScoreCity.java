@@ -28,14 +28,15 @@ public class SortByNiceScoreCity implements Sort{
 
     @Override
     public void sortChildren(ArrayList<ChildStrategy> children) {
-        for(Child child : children) {
+        for(ChildStrategy child : children) {
             ArrayList<Double> niceScores = mapCityScores.get(child.getCity());
             if(niceScores == null) {
                 niceScores = new ArrayList<>();
-                niceScores.add(child.getNiceScore());
+                niceScores.add(child.getAverageScore());
+
                 mapCityScores.put(child.getCity(),niceScores);
             } else {
-                niceScores.add(child.getNiceScore());
+                niceScores.add(child.getAverageScore());
                 mapCityScores.put(child.getCity(),niceScores);
 
             }
@@ -57,8 +58,12 @@ public class SortByNiceScoreCity implements Sort{
                     Collections.swap(niceScores, i, j);
                     Collections.swap(cities, i, j);
                 }
+            }
+        }
+        for (int i = 0; i < niceScores.size() - 1; i++) {
+            for (int j = i + 1; j < niceScores.size(); j++){
                 if(niceScores.get(i).compareTo(niceScores.get(j)) == 0) {
-                    if(cities.get(i).compareTo(cities.get(j)) > 0) {
+                    if(cities.get(i).toString().compareTo(cities.get(j).toString()) > 0) {
                         Collections.swap(niceScores, i, j);
                         Collections.swap(cities, i, j);
                     }
