@@ -1,0 +1,18 @@
+Crestus Adelin 321CD
+
+Am adaugat in clasa abstracta ChildStrategy metoda addNiceScoreBonus, pe care am si implementat-o
+si care aduna scorul bonus si trunchiaza nota la 10.
+Dupa calculul din average() implementat in etapa 1 am apelat addNiceScoreBonus().
+Am implementat modificarea bugetului de catre elfi prin strategy si i-am creat cu Factory.
+Metoda santaAction a ramas aceeasi, am adaugat doar sortarea copiilor in functie de strategy.
+In update am mai adaugat actualizarile elfilor si ale strategiilor, iar in giveGift am implementat
+si scaderea cantitatii.
+Inainte sa oferim un cadou unui copil verificam daca mai avem disponibile.
+Dupa ce mosul ofera cadourile, elful galben isi face si el datoria.
+Sortez copiii dupa id pentru afisare si updatez informatiile pentru anul viitor.
+La sortari am folosit metode existente pentru care am suprascris metoda compare din comparator.
+Sortarea dupa orase am implementat-o eu. Am luat un hashmap cu orase si lista de note.
+Apoi un hashmap cu orase si media notelor.
+Am luat cei doi vectori si i-am sortat impreuna.
+Apoi am parcurs lista de orase, sortate in ordinea descrescatoare average-ului si am pus in ordine
+copiii in functie de orase, pe care i-am sortat dupa id in caz ca veaneau din acelasi oras.
